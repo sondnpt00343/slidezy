@@ -1,7 +1,10 @@
 .slidezy-wrapper {
-    position: relative;
     width: 100%;
     overflow: hidden;
+}
+
+.slidezy-content {
+    position: relative;
 }
 
 .slidezy-track {
@@ -30,4 +33,24 @@
 
 .slidezy-next {
     right: 10px;
+}
+
+.slidezy-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.slidezy-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    background: #ccc;
+}
+
+.slidezy-dot.active {
+    background: #333;
 }
