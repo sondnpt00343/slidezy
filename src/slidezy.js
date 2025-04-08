@@ -16,6 +16,9 @@ function Slidezy(selector, options = {}) {
             prevButton: null,
             nextButton: null,
             slideBy: 1,
+            autoplay: false,
+            autoplayTimeout: 3000,
+            autoplayHoverPause: true,
         },
         options
     );
@@ -42,6 +45,30 @@ Slidezy.prototype._init = function () {
     if (this.opt.nav && showNav) {
         this._createNav();
     }
+
+    if (this.opt.autoplay) {
+        this._startAutoplay();
+
+        if (this.opt.autoplayHoverPause) {
+            this.container.onmouseenter = () => this._stopAutoplay();
+            this.container.onmouseleave = () => this._startAutoplay();
+        }
+    }
+};
+
+Slidezy.prototype._startAutoplay = function () {
+    if (this.autoplayTimer) return;
+
+    const slideBy = this._getSlideBy();
+
+    this.autoplayTimer = setInterval(() => {
+        this.moveSlide(slideBy);
+    }, this.opt.autoplayTimeout);
+};
+
+Slidezy.prototype._stopAutoplay = function () {
+    clearInterval(this.autoplayTimer);
+    this.autoplayTimer = null;
 };
 
 Slidezy.prototype._createContent = function () {
