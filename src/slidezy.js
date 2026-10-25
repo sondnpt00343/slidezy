@@ -192,7 +192,7 @@ Slidezy.prototype.moveSlide = function (step) {
             if (this.currentIndex < this._getCloneCount()) {
                 this.currentIndex += slideCount;
                 this._updatePosition(true);
-            } else if (this.currentIndex > slideCount) {
+            } else if (this.currentIndex >= this._getCloneCount() + slideCount) {
                 this.currentIndex -= slideCount;
                 this._updatePosition(true);
             }
